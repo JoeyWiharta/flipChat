@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { Button } from "@/components/ui/button"
-import ThemeToggle from "@/sharedFeature/components/ThemeToggle"
-import Navbar from "../../sharedFeature/components/Navbar"
+import ThemeToggle from "@/shared/components/ThemeToggle"
+import Navbar from "../../shared/components/Navbar"
 
 export default function LandingPage() {
     return (

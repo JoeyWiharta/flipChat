@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import { Button } from "@/components/ui/button"
-import ThemeToggle from "@/sharedFeature/components/ThemeToggle"
+import ThemeToggle from "@/shared/components/ThemeToggle"
 import logoIcon from "@/assets/logo-icon.svg"
 
 const menuList = [
