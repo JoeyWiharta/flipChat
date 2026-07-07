@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import type { Theme, ThemeState } from "@/sharedFeature/types/theme.types"
+import type { Theme, ThemeState } from "@/types/theme.types"
 
 const getSystemTheme = (): "light" | "dark" => {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"

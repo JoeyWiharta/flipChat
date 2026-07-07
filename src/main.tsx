@@ -1,17 +1,20 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
-import { QueryClientProvider } from "@tanstack/react-query"
 import { BrowserRouter } from "react-router"
-import { queryClient } from "./lib/queryClient.ts"
-import App from "./App.tsx"
-import "./index.css"
+import App from "./app/App.tsx"
+import "./styles/global.css"
+import "@fontsource/geist-sans/400.css"
+import "@fontsource/geist-sans/500.css"
+import "@fontsource/geist-sans/600.css"
+import "@fontsource/geist-sans/700.css"
+import AppProviders from "./app/providers/app-providers.tsx"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <AppProviders>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </QueryClientProvider>
+    </AppProviders>
   </StrictMode>,
 )
