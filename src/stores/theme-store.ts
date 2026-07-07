@@ -7,19 +7,21 @@ const getSystemTheme = (): "light" | "dark" => {
 }
 
 const applyTheme = (theme: Theme) => {
-    document.documentElement.classList.toggle("dark", theme === "dark")
+    const resolved = theme === "system" ? getSystemTheme() : theme
+    document.documentElement.classList.toggle("dark", resolved === "dark")
 }
 
 export const useThemeStore = create<ThemeState>()(
     persist(
         (set, get) => ({
-            theme: getSystemTheme(),
+            theme: "system",
             setTheme: (theme) => {
                 set({ theme })
                 applyTheme(theme)
             },
             toggleTheme: () => {
-                const newTheme = get().theme === "dark" ? "light" : "dark"
+                const current = get().theme === "system" ? getSystemTheme() : get().theme
+                const newTheme = current === "dark" ? "light" : "dark"
                 set({ theme: newTheme })
                 applyTheme(newTheme)
             },

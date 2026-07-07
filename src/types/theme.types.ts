@@ -1,4 +1,5 @@
-export type Theme = "light" | "dark"
+export type Theme = "light" | "dark" | "system"
+
 
 export interface ThemeState {
     theme: Theme
