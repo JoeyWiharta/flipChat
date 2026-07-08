@@ -7,8 +7,9 @@ export const useAuthStore = create<AuthState>()(
         (set) => ({
             isAuthenticated: false,
             accessToken: null,
-            setSession: (token) => set({ isAuthenticated: true, accessToken: token }),
-            logout: () => set({ isAuthenticated: false, accessToken: null }),
+            user: null,
+            setSession: (token, user) => set({ isAuthenticated: true, accessToken: token, user }),
+            logout: () => set({ isAuthenticated: false, accessToken: null, user: null }),
         }),
         { name: "flipchat-auth" }
     )

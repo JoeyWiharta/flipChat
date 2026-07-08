@@ -23,27 +23,30 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 import { SiGoogle, SiGithub } from "@icons-pack/react-simple-icons"
 import { loginSchema, type LoginSchema } from "../schemas/auth.schema"
 import { PATHS } from "@/app/router/paths"
+import { useLogin } from "../hooks/use-auth"
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false)
+    const { mutate: submitLogin, isPending, isError, error } = useLogin()
+
 
     const {
         register,
         handleSubmit,
         control,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
             email: "",
             password: "",
-            rememberMe: false,
         },
     })
 
     const onSubmit = (values: LoginSchema) => {
+        debugger
         console.log(values)
-        // nanti: submitLogin(values) via useLogin() hook
+        submitLogin(values)
     }
 
     return (
@@ -115,25 +118,8 @@ const LoginForm = () => {
                         </Field>
                     </FieldGroup>
 
-                    <div className="flex items-center gap-2">
-                        <Controller
-                            name="rememberMe"
-                            control={control}
-                            render={({ field }) => (
-                                <Checkbox
-                                    id="remember"
-                                    checked={field.value}
-                                    onCheckedChange={field.onChange}
-                                />
-                            )}
-                        />
-                        <FieldLabel htmlFor="remember" className="text-sm font-normal cursor-pointer">
-                            Remember me for 30 days
-                        </FieldLabel>
-                    </div>
-
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                        {isSubmitting ? "Memproses..." : "Sign In"}
+                    <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+                        {isPending ? "Memproses..." : "Sign In"}
                     </Button>
                 </form>
 
@@ -163,6 +149,11 @@ const LoginForm = () => {
                         Create Account
                     </Link>
                 </p>
+                {isError && (
+                    <p className="text-sm text-destructive text-center mt-4">
+                        {error instanceof Error ? error.message : "Login gagal, coba lagi."}
+                    </p>
+                )}
             </CardContent>
         </Card>
     )
