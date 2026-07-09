@@ -10,7 +10,6 @@ import {
     FieldDescription,
 } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Separator } from "@/components/ui/separator"
 import {
     Card,
@@ -23,7 +22,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 import { SiGoogle, SiGithub } from "@icons-pack/react-simple-icons"
 import { loginSchema, type LoginSchema } from "../schemas/auth.schema"
 import { PATHS } from "@/app/router/paths"
-import { useLogin } from "../hooks/use-auth"
+import { useLogin } from "../hooks/use-login"
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false)

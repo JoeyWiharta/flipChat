@@ -2,10 +2,12 @@ import axios from "axios"
 import { env } from "@/config/env"
 import { useAuthStore } from "@/features/auth/store/auth-store"
 
+const AUTH_EXCLUDED_PATHS = ["/auth/login", "/auth/register"]
+
 export const apiClient = axios.create({
-    baseURL: env.VITE_API_BASE_URL,
+    baseURL: env.API_BASE_URL,
     headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     },
 })
 
@@ -21,10 +23,11 @@ apiClient.interceptors.response.use(
     (response) => response,
     (error) => {
         const status = error.response?.status
-        const url = error.config?.url
+        const url = error.config?.url as string | undefined
 
-        // Abaikan 401 dari endpoint login
-        if (status === 401 && url !== "/auth/login") {
+        const isExcluded = AUTH_EXCLUDED_PATHS.some((path) => url?.includes(path))
+
+        if (status === 401 && !isExcluded) {
             useAuthStore.getState().logout()
         }
 

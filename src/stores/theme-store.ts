@@ -1,6 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import type { Theme, ThemeState } from "@/types/theme.types"
+import { STORAGE_KEYS } from "@/constants/storage-keys"
 
 const getSystemTheme = (): "light" | "dark" => {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
@@ -27,7 +28,7 @@ export const useThemeStore = create<ThemeState>()(
             },
         }),
         {
-            name: "flipchat-theme",
+            name: STORAGE_KEYS.THEME,
             onRehydrateStorage: () => (state) => {
                 if (state) applyTheme(state.theme)
             },
