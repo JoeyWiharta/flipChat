@@ -1,6 +1,6 @@
-import { Outlet } from "react-router"
-import AuthShowcase from "../features/auth/components/auth-showcase"
-import Navbar from "../features/auth/components/navbar"
+import { Outlet } from "react-router";
+import Navbar from "@/features/auth/components/Navbar";
+import AuthShowcase from "@/features/auth/components/AuthShowcase";
 
 const AuthLayout = () => {
   return (
@@ -13,7 +13,7 @@ const AuthLayout = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default AuthLayout
+export default AuthLayout;

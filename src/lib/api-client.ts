@@ -1,6 +1,6 @@
 import axios from "axios"
 import { env } from "@/config/env"
-import { useAuthStore } from "@/features/auth/store/auth-store"
+import { useAuthStore } from "@/features/auth/store/AuthStore"
 
 const AUTH_EXCLUDED_PATHS = ["/auth/login", "/auth/register"]
 

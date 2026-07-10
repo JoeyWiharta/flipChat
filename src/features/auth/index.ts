@@ -1,2 +1,2 @@
-export { useAuthStore } from "./store/auth-store"
-export type { AuthState } from "./types/auth.types"
+export { useAuthStore } from "./store/AuthStore"
+export type { AuthState } from "./types/AuthTypes"

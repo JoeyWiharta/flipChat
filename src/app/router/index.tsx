@@ -12,9 +12,9 @@ import AuthLayout from "@/layouts/auth-layout"
 import PageLoader from "@/components/shared/page-loader"
 import { NotFoundPage } from "@/features/not-found/pages/not-found-page"
 
-const LandingPage = lazy(() => import("@/features/landing/pages/landing-page"))
-const LoginPage = lazy(() => import("@/features/auth/pages/login-page"))
-const RegisterPage = lazy(() => import("@/features/auth/pages/register-page"))
+const LandingPage = lazy(() => import("@/features/landing/pages/LandingPage"))
+const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage"))
+const RegisterPage = lazy(() => import("@/features/auth/pages/RegisterPage"))
 
 const AppRouter = () => {
     return (
