@@ -5,7 +5,7 @@ import { useAuthStore } from "../store/auth-store";
 import { PATHS } from "@/constants/routes";
 import type { LoginSchema } from "../schemas/auth-schema";
 import { toast } from "sonner";
-import { getErrorMessage } from "@/lib/error-message";
+import { getErrorMessage } from "@/lib/get-error-message";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -26,9 +26,8 @@ export const useLogin = () => {
 
     onError: (error, _, context) => {
       toast.dismiss(context?.toastId);
-      toast.error(
-        getErrorMessage(error, "Unable to sign in. Please try again."),
-      );
+      toast.error(getErrorMessage(error, "Unable to login. Please try again."));
     },
+
   });
 };
