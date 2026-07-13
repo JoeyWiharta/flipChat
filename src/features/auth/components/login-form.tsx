@@ -119,7 +119,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full font-normal tracking-wide text-base"
+            className="w-full font-normal tracking-wide text-base mt-4"
             disabled={isPending}
           >
             {isPending ? "Signing in..." : "Sign In"}
