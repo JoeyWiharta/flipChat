@@ -20,7 +20,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { EyeOffIcon, Lock, Mail, Eye } from "lucide-react";
+import { EyeOffIcon, Mail, Eye, LockKeyhole } from "lucide-react";
 import { useLogin } from "../hooks/use-login";
 import { loginSchema, type LoginSchema } from "../schemas/auth-schema";
 import { Button } from "@/components/ui/button";
@@ -68,7 +68,7 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <FieldGroup>
             <Field data-invalid={!!errors.email} className="gap-2">
-              <FieldLabel htmlFor="email" className="font-normal">
+              <FieldLabel htmlFor="email" className="text-sm">
                 Email Address
               </FieldLabel>
               <InputGroup className="h-10 gap-1">
@@ -89,12 +89,12 @@ const LoginForm = () => {
 
           <FieldGroup>
             <Field data-invalid={!!errors.password} className="gap-2">
-              <FieldLabel htmlFor="password" className="font-normal">
+              <FieldLabel htmlFor="email" className="text-sm">
                 Password
               </FieldLabel>
               <InputGroup className="h-10 gap-1">
                 <InputGroupAddon align="inline-start">
-                  <Lock />
+                  <LockKeyhole />
                 </InputGroupAddon>
                 <InputGroupInput
                   id="password"
@@ -119,17 +119,17 @@ const LoginForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full font-normal tracking-wide text-base mt-4"
+            className="w-full font-normal tracking-wide text-base mt-5"
             disabled={isPending}
           >
             {isPending ? "Signing in..." : "Sign In"}
           </Button>
         </form>
-        <FieldSeparator className="my-4">or</FieldSeparator>
+        <FieldSeparator className="my-5">or</FieldSeparator>
         <Button
           type="button"
           size="lg"
-          className="w-full mb-4"
+          className="w-full mb-5"
           variant="outline"
           disabled={isPending}
           onClick={() => alert("Coming soon")}
