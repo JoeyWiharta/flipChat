@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
@@ -36,6 +36,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -44,6 +45,9 @@ const LoginForm = () => {
       password: "",
     },
   });
+
+  const emailValue = useWatch({ control, name: "email" });
+  const passwordValue = useWatch({ control, name: "password" });
 
   const onSubmit = (values: LoginSchema) => {
     submitLogin(values, {
@@ -74,7 +78,12 @@ const LoginForm = () => {
               </FieldLabel>
               <InputGroup className="h-10 gap-1">
                 <InputGroupAddon align="inline-start">
-                  <Mail />
+                  <Mail
+                    className={cn(
+                      "transition-colors",
+                      emailValue ? "text-foreground" : "text-muted-foreground",
+                    )}
+                  />
                 </InputGroupAddon>
                 <InputGroupInput
                   id="email"
@@ -90,12 +99,19 @@ const LoginForm = () => {
 
           <FieldGroup>
             <Field data-invalid={!!errors.password} className="gap-2">
-              <FieldLabel htmlFor="email" className="text-sm">
+              <FieldLabel htmlFor="password" className="text-sm">
                 Password
               </FieldLabel>
               <InputGroup className="h-10 gap-1">
                 <InputGroupAddon align="inline-start">
-                  <LockKeyhole />
+                  <LockKeyhole
+                    className={cn(
+                      "transition-colors",
+                      passwordValue
+                        ? "text-foreground"
+                        : "text-muted-foreground",
+                    )}
+                  />
                 </InputGroupAddon>
                 <InputGroupInput
                   id="password"
@@ -109,8 +125,9 @@ const LoginForm = () => {
                   onClick={() => !isPending && setShowPassword((prev) => !prev)}
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   className={cn(
-                    "cursor-pointer",
+                    "cursor-pointer transition-all active:scale-90",
                     isPending && "pointer-events-none",
+                    passwordValue ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
                   {showPassword ? <Eye /> : <EyeOffIcon />}
@@ -123,7 +140,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full mt-5"
+            className="w-full mt-5 transition-opacity"
             disabled={isPending}
           >
             {isPending ? "Signing in..." : "Sign In"}
@@ -133,7 +150,7 @@ const LoginForm = () => {
         <Button
           type="button"
           size="lg"
-          className="w-full mb-5"
+          className="w-full mb-5 transition-opacity"
           variant="outline"
           disabled={isPending}
           onClick={() => alert("Coming soon")}
@@ -147,8 +164,8 @@ const LoginForm = () => {
           <Link
             to={PATHS.REGISTER}
             className={cn(
-              "text-primary ml-1 hover:font-medium",
-              isPending && "pointer-events-none",
+              "text-primary ml-1.5 inline-block transition-all hover:scale-102",
+              isPending && "pointer-events-none opacity-75",
             )}
             aria-disabled={isPending}
           >
