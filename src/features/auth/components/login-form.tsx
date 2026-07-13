@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import {
   Card,
   CardContent,
@@ -11,15 +10,23 @@ import {
 } from "@/components/ui/card";
 import {
   Field,
-  FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
+  FieldSeparator,
 } from "@/components/ui/field";
-import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
-import { Lock, Mail } from "lucide-react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+import { EyeOffIcon, Lock, Mail, Eye } from "lucide-react";
 import { useLogin } from "../hooks/use-login";
 import { loginSchema, type LoginSchema } from "../schemas/auth-schema";
 import { Button } from "@/components/ui/button";
+import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router";
+import { PATHS } from "@/constants/routes";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +34,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -37,14 +45,18 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: LoginSchema) => {
-    submitLogin(values);
+    submitLogin(values, {
+      onSuccess: () => {
+        reset({
+          email: "",
+          password: "",
+        });
+      },
+    });
   };
 
-  // Check Code ClaudeAI HERE
-  // https://claude.ai/chat/b298250f-f6ec-47f1-88df-5cb132253186
-
   return (
-    <Card className="w-full max-w-135 shadow-2xl">
+    <Card className="w-full max-w-120 shadow-2xl gap-8">
       <CardHeader>
         <CardTitle className="text-3xl font-medium">Welcome Back</CardTitle>
         <CardDescription>
@@ -53,12 +65,16 @@ const LoginForm = () => {
       </CardHeader>
 
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="email">Email Address</FieldLabel>
-              <InputGroup>
-                <Mail />
+            <Field data-invalid={!!errors.email} className="gap-2">
+              <FieldLabel htmlFor="email" className="font-normal">
+                Email Address
+              </FieldLabel>
+              <InputGroup className="h-10 gap-1">
+                <InputGroupAddon align="inline-start">
+                  <Mail />
+                </InputGroupAddon>
                 <InputGroupInput
                   id="email"
                   type="email"
@@ -67,40 +83,70 @@ const LoginForm = () => {
                   {...register("email")}
                 />
               </InputGroup>
-              {errors?.email && (
-                <FieldDescription>{errors.email.message}</FieldDescription>
-              )}
+              {errors.email && <FieldError errors={[errors.email]} />}
             </Field>
           </FieldGroup>
 
           <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
-              <InputGroup>
-                <Lock />
+            <Field data-invalid={!!errors.password} className="gap-2">
+              <FieldLabel htmlFor="password" className="font-normal">
+                Password
+              </FieldLabel>
+              <InputGroup className="h-10 gap-1">
+                <InputGroupAddon align="inline-start">
+                  <Lock />
+                </InputGroupAddon>
                 <InputGroupInput
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   aria-invalid={!!errors.password}
                   {...register("password")}
                 />
+                <InputGroupAddon
+                  align="inline-end"
+                  onClick={() => !isPending && setShowPassword((prev) => !prev)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  className="cursor-pointer"
+                >
+                  {showPassword ? <Eye /> : <EyeOffIcon />}
+                </InputGroupAddon>
               </InputGroup>
-              {errors?.password && (
-                <FieldDescription>{errors.password.message}</FieldDescription>
-              )}
+              {errors.password && <FieldError errors={[errors.password]} />}
             </Field>
           </FieldGroup>
 
           <Button
             type="submit"
             size="lg"
-            className="w-full"
+            className="w-full font-normal tracking-wide text-base"
             disabled={isPending}
           >
-            {isPending ? "Logging in..." : "Login"}
+            {isPending ? "Signing in..." : "Sign In"}
           </Button>
         </form>
+        <FieldSeparator className="my-4">or</FieldSeparator>
+        <Button
+          type="button"
+          size="lg"
+          className="w-full mb-4"
+          variant="outline"
+          disabled={isPending}
+          onClick={() => alert("Coming soon")}
+        >
+          <FcGoogle />
+          Continue with Google
+        </Button>
+
+        <p className="text-center text-sm text-muted-foreground">
+          Don't have an account?
+          <Link
+            to={PATHS.REGISTER}
+            className="underline underline-offset-4 hover:text-primary ml-1"
+          >
+            Sign up
+          </Link>
+        </p>
       </CardContent>
     </Card>
   );
