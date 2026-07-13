@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { PATHS } from "@/constants/routes";
+import { cn } from "@/lib/utils";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -107,7 +108,10 @@ const LoginForm = () => {
                   align="inline-end"
                   onClick={() => !isPending && setShowPassword((prev) => !prev)}
                   aria-label={showPassword ? "Hide password" : "Show password"}
-                  className="cursor-pointer"
+                  className={cn(
+                    "cursor-pointer",
+                    isPending && "pointer-events-none",
+                  )}
                 >
                   {showPassword ? <Eye /> : <EyeOffIcon />}
                 </InputGroupAddon>
@@ -119,13 +123,13 @@ const LoginForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full font-normal tracking-wide text-base mt-5"
+            className="w-full mt-5"
             disabled={isPending}
           >
             {isPending ? "Signing in..." : "Sign In"}
           </Button>
         </form>
-        <FieldSeparator className="my-5">or</FieldSeparator>
+        <FieldSeparator className="my-5">or continue with</FieldSeparator>
         <Button
           type="button"
           size="lg"
@@ -142,9 +146,13 @@ const LoginForm = () => {
           Don't have an account?
           <Link
             to={PATHS.REGISTER}
-            className="underline underline-offset-4 hover:text-primary ml-1"
+            className={cn(
+              "text-primary ml-1 hover:font-medium",
+              isPending && "pointer-events-none",
+            )}
+            aria-disabled={isPending}
           >
-            Sign up
+            Create an Account
           </Link>
         </p>
       </CardContent>
