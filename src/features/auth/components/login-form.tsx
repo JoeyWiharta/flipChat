@@ -62,7 +62,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-120">
+    <Card className="w-full max-w-125">
       <CardHeader>
         <CardTitle className="text-2xl font-medium">Welcome Back</CardTitle>
         <CardDescription className="text-base">
@@ -73,7 +73,8 @@ const LoginForm = () => {
       <FieldSeparator className="mx-6 w-auto" />
 
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+        <form noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+
           <FieldGroup>
             <Field data-invalid={!!errors.email} className="gap-2">
               <FieldLabel htmlFor="email">Email Address</FieldLabel>
@@ -139,19 +140,19 @@ const LoginForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full mt-5 transition-opacity"
+            className="w-full mt-4 transition-opacity"
             disabled={isPending}
           >
             {isPending ? "Signing in..." : "Sign In"}
           </Button>
         </form>
 
-        <FieldSeparator className="my-6">or continue with</FieldSeparator>
+        <FieldSeparator className="my-4">or continue with</FieldSeparator>
 
         <Button
           type="button"
           size="lg"
-          className="w-full mb-6 transition-opacity"
+          className="w-full mb-4 transition-opacity"
           variant="outline"
           disabled={isPending}
           onClick={() => alert("Coming soon")}
