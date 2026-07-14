@@ -1,5 +1,6 @@
+import type { Language } from "@/constants/language";
+
 // ======= Define types for authentication (Login and Register) =======
-//
 // ======= Raw Response Type from API (Login and Register) =======
 export interface LoginRegisterResponse {
   access_token: string;
@@ -39,7 +40,7 @@ export interface RegisterPayload {
   username: string;
   email: string;
   password: string;
-  language: string;
+  language: Language;
 }
 
 // ======= Type for Global Auth State =======

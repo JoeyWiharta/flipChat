@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -61,21 +62,21 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-120 shadow-2xl gap-8">
+    <Card className="w-full max-w-120">
       <CardHeader>
-        <CardTitle className="text-3xl font-medium">Welcome Back</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-2xl font-medium">Welcome Back</CardTitle>
+        <CardDescription className="text-base">
           Sign in to continue your conversations.
         </CardDescription>
       </CardHeader>
+
+      <FieldSeparator className="mx-6 w-auto" />
 
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <FieldGroup>
             <Field data-invalid={!!errors.email} className="gap-2">
-              <FieldLabel htmlFor="email" className="text-sm">
-                Email Address
-              </FieldLabel>
+              <FieldLabel htmlFor="email">Email Address</FieldLabel>
               <InputGroup className="h-10 gap-1">
                 <InputGroupAddon align="inline-start">
                   <Mail
@@ -99,9 +100,7 @@ const LoginForm = () => {
 
           <FieldGroup>
             <Field data-invalid={!!errors.password} className="gap-2">
-              <FieldLabel htmlFor="password" className="text-sm">
-                Password
-              </FieldLabel>
+              <FieldLabel htmlFor="password">Password</FieldLabel>
               <InputGroup className="h-10 gap-1">
                 <InputGroupAddon align="inline-start">
                   <LockKeyhole
@@ -146,11 +145,13 @@ const LoginForm = () => {
             {isPending ? "Signing in..." : "Sign In"}
           </Button>
         </form>
-        <FieldSeparator className="my-5">or continue with</FieldSeparator>
+
+        <FieldSeparator className="my-6">or continue with</FieldSeparator>
+
         <Button
           type="button"
           size="lg"
-          className="w-full mb-5 transition-opacity"
+          className="w-full mb-6 transition-opacity"
           variant="outline"
           disabled={isPending}
           onClick={() => alert("Coming soon")}
@@ -159,19 +160,19 @@ const LoginForm = () => {
           Continue with Google
         </Button>
 
-        <p className="text-center text-sm text-muted-foreground">
+        <CardFooter className="justify-center text-muted-foreground">
           Don't have an account?
           <Link
             to={PATHS.REGISTER}
             className={cn(
-              "text-primary ml-1.5 inline-block transition-all hover:scale-102",
+              "text-primary font-semibold ml-1.5 inline-block transition-all hover:scale-102",
               isPending && "pointer-events-none opacity-75",
             )}
             aria-disabled={isPending}
           >
             Create an Account
           </Link>
-        </p>
+        </CardFooter>
       </CardContent>
     </Card>
   );
