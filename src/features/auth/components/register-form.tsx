@@ -96,7 +96,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-125 ring-2">
+    <Card className="w-full max-w-130 ring-2">
       <CardHeader>
         <CardTitle className="text-2xl font-medium">Create Account</CardTitle>
         <CardDescription className="text-base">

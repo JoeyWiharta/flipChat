@@ -62,7 +62,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-125 ring-2">
+    <Card className="w-full max-w-110 ring-2">
       <CardHeader>
         <CardTitle className="text-2xl font-medium">Welcome Back</CardTitle>
         <CardDescription className="text-base">
