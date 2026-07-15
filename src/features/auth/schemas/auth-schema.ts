@@ -6,12 +6,9 @@ export const loginSchema = z.object({
   email: z
     .string()
     .trim()
-    .min(1, "Email is required")
-    .pipe(z.email("Invalid email format")),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(8, "Password must be at least 8 characters"),
+    .min(1, "Email required")
+    .pipe(z.email("Invalid email")),
+  password: z.string().min(1, "Password required").min(8, "Min 8 characters"),
 });
 export type LoginSchema = z.infer<typeof loginSchema>;
 
@@ -23,36 +20,29 @@ const languageOptions = LANGUAGES_OPTIONS.map((data) => data.value) as [
 
 export const registerSchema = z
   .object({
-    name: z
-      .string()
-      .trim()
-      .min(1, "Name is required")
-      .min(2, "Name must be at least 2 characters"),
+    name: z.string().trim().min(1, "Name required").min(2, "Min 2 characters"),
     username: z
       .string()
       .trim()
-      .min(1, "Username is required")
-      .min(3, "Username must be at least 3 characters")
-      .regex(
-        /^[a-zA-Z0-9_]+$/,
-        "Username can only contain letters, numbers, and underscores",
-      ),
+      .min(1, "Username required")
+      .min(3, "Min 3 characters")
+      .regex(/^[a-zA-Z0-9_]+$/, "Letters, numbers, underscores only"),
     email: z
       .string()
       .trim()
-      .min(1, "Email is required")
-      .pipe(z.email("Invalid email format")),
+      .min(1, "Email required")
+      .pipe(z.email("Invalid email")),
     password: z
       .string()
-      .min(1, "Password is required")
-      .min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string().min(1, "Confirm password is required"),
+      .min(1, "Password required")
+      .min(8, "Min 8 characters"),
+    confirmPassword: z.string().min(1, "Confirm password required"),
     language: z.enum(languageOptions, {
-      message: "Please select a language",
+      message: "Select a language",
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Password do not match",
+    message: "Password don't match",
     path: ["confirmPassword"],
   });
 export type RegisterSchema = z.infer<typeof registerSchema>;
