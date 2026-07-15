@@ -3,6 +3,7 @@ import type { LoginSchema } from "../schemas/auth-schema";
 import type {
   LoginRegisterResponse,
   LoginRegisterResult,
+  LogoutResponse,
   RegisterPayload,
 } from "../types/auth-types";
 import { mappedUser } from "../utils/auth-mapper";
@@ -35,3 +36,13 @@ export const registerApi = async (
     user: mappedUser(data.user),
   };
 };
+
+export const logoutApi = async (): Promise<LogoutResponse> => {
+  // Destructuring Concept for Axios from API (only takes response.data = {data})
+  const { data } = await apiClient.post<LogoutResponse>("/auth/logout");
+  return data;
+};
+
+export const refreshApi = async(): Promise<void> => {
+
+}

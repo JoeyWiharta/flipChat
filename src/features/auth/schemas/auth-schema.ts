@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { LANGUAGES_OPTIONS } from "@/constants/language";
+import { LANGUAGES_OPTIONS, type Language } from "@/constants/language";
 
 // ======= Login Schema and Validation Form =======
 export const loginSchema = z.object({
@@ -17,8 +17,8 @@ export type LoginSchema = z.infer<typeof loginSchema>;
 
 // ======= Register Schema and Validation Form =======
 const languageOptions = LANGUAGES_OPTIONS.map((data) => data.value) as [
-  string,
-  ...string[],
+  Language,
+  ...Language[],
 ];
 
 export const registerSchema = z

@@ -62,7 +62,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-125">
+    <Card className="w-full max-w-125 ring-2">
       <CardHeader>
         <CardTitle className="text-2xl font-medium">Welcome Back</CardTitle>
         <CardDescription className="text-base">
@@ -73,12 +73,15 @@ const LoginForm = () => {
       <FieldSeparator className="mx-6 w-auto" />
 
       <CardContent>
-        <form noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-
+        <form
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-4"
+        >
           <FieldGroup>
             <Field data-invalid={!!errors.email} className="gap-2">
               <FieldLabel htmlFor="email">Email Address</FieldLabel>
-              <InputGroup className="h-10 gap-1">
+              <InputGroup className="gap-1">
                 <InputGroupAddon align="inline-start">
                   <Mail
                     className={cn(
@@ -102,7 +105,7 @@ const LoginForm = () => {
           <FieldGroup>
             <Field data-invalid={!!errors.password} className="gap-2">
               <FieldLabel htmlFor="password">Password</FieldLabel>
-              <InputGroup className="h-10 gap-1">
+              <InputGroup className="gap-1">
                 <InputGroupAddon align="inline-start">
                   <LockKeyhole
                     className={cn(

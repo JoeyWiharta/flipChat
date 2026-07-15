@@ -43,6 +43,11 @@ export interface RegisterPayload {
   language: Language;
 }
 
+// ======= Response Type for Logout API=======
+export interface LogoutResponse {
+  message: string
+}
+
 // ======= Type for Global Auth State =======
 export interface AuthState {
   isAuthenticated: boolean;
