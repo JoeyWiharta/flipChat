@@ -21,7 +21,11 @@ const SidebarMain = () => {
       <SidebarHeader className="items-center">
         <img src={logoIcon} className="h-9 w-9" />
       </SidebarHeader>
-      <SidebarContent>
+
+      {/*Update Rollback UI Sidebar ke default shadcn*/}
+      {/*Custom width styling di form ini sidebar pakai inset*/}
+
+      {/*<SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent className="p-0">
             <SidebarMenu className="flex flex-col items-center gap-3">
@@ -47,7 +51,7 @@ const SidebarMain = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-      </SidebarContent>
+      </SidebarContent>*/}
       <SidebarFooter />
     </Sidebar>
   );
