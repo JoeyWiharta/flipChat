@@ -11,21 +11,26 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { navItems } from "../config/nav-items";
-import logoIcon from "@/assets/icons/logo-icon.svg";
+import { Zap } from "lucide-react";
 
 const SidebarMain = () => {
   const location = useLocation();
 
   return (
     <Sidebar collapsible="icon" variant="inset">
-      <SidebarHeader className="items-center">
-        <img src={logoIcon} className="h-9 w-9" />
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              tabIndex={-1}
+              className="pointer-events-none cursor-default text-primary hover:bg-transparent hover:text-primary active:bg-transparent active:text-primary data-active:bg-transparent focus-visible:ring-0"
+              render={<Zap fill="currentColor" />}
+            />
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
 
-      {/*Update Rollback UI Sidebar ke default shadcn*/}
-      {/*Custom width styling di form ini sidebar pakai inset*/}
-
-      {/*<SidebarContent>
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent className="p-0">
             <SidebarMenu className="flex flex-col items-center gap-3">
@@ -51,8 +56,11 @@ const SidebarMain = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-      </SidebarContent>*/}
-      <SidebarFooter />
+      </SidebarContent>
+
+      <SidebarFooter>
+        Content
+      </SidebarFooter>
     </Sidebar>
   );
 };
