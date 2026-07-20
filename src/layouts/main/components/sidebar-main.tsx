@@ -1,17 +1,8 @@
 import { NavLink, useLocation } from "react-router";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator } from "@/components/ui/sidebar";
 import { navItems } from "../config/nav-items";
 import { Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const SidebarMain = () => {
   const location = useLocation();
@@ -23,21 +14,25 @@ const SidebarMain = () => {
           <SidebarMenuItem>
             <SidebarMenuButton
               tabIndex={-1}
-              className="pointer-events-none cursor-default text-primary hover:bg-transparent hover:text-primary active:bg-transparent active:text-primary data-active:bg-transparent focus-visible:ring-0"
-              render={<Zap fill="currentColor" />}
+              className="pointer-events-none cursor-default hover:bg-transparent active:bg-transparent data-active:bg-transparent focus-visible:ring-0"
+              render={
+                <div>
+                  <Zap className="text-primary" fill="currentColor" />
+                </div>
+              }
             />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
 
+      <SidebarSeparator />
+
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupContent className="p-0">
-            <SidebarMenu className="flex flex-col items-center gap-3">
+          <SidebarGroupContent>
+            <SidebarMenu>
               {navItems.map((item) => {
-                const isActive =
-                  location.pathname === item.to ||
-                  location.pathname.startsWith(`${item.to}/`);
+                const isActive = location.pathname === item.to || location.pathname.startsWith(`${item.to}/`);
 
                 return (
                   <SidebarMenuItem key={item.label}>
@@ -46,7 +41,7 @@ const SidebarMain = () => {
                       isActive={isActive}
                       render={
                         <NavLink to={item.to}>
-                          <item.icon />
+                          <item.icon className={cn("transition-colors", isActive ? "text-sidebar-foreground" : "text-muted-foreground hover:text-sidebar-foreground")} />
                         </NavLink>
                       }
                     />
@@ -58,9 +53,7 @@ const SidebarMain = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
-        Content
-      </SidebarFooter>
+      <SidebarFooter></SidebarFooter>
     </Sidebar>
   );
 };
