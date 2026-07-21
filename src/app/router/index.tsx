@@ -8,6 +8,7 @@ import AuthLayout from "@/layouts/auth/auth-layout";
 import MainLayout from "@/layouts/main/main-layout";
 import PageLoader from "@/components/shared/page-loader";
 import { NotFoundPage } from "@/features/not-found/pages/not-found-page";
+import ProfilePage from "@/features/profile/pages/profile-page";
 
 const LandingPage = lazy(() => import("@/features/landing/pages/landing-page"));
 const LoginPage = lazy(() => import("@/features/auth/pages/login-page"));
@@ -40,6 +41,7 @@ const AppRouter = () => {
             <Route path={PATHS.APP.ROOT} element={<Navigate to={PATHS.APP.CHAT} replace />} />
             <Route path={PATHS.APP.CHAT} element={<EmptyStatePage />} />
             <Route path={PATHS.APP.FRIENDS} element={<FriendsPage />} />
+            <Route path={PATHS.APP.PROFILE} element={<ProfilePage />} />
 
             {/*<Route path={PATHS.APP.CHAT_CONVERSATION()} element={<ChatWindow />} />
             <Route path={PATHS.APP.FRIENDS} element={<FriendsPage />} />

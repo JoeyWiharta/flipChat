@@ -7,6 +7,7 @@ export const PATHS = {
     CHAT: "/app/chat",
     CHAT_CONVERSATION: (id: string = ":conversationId") => `/app/chat/${id}`,
     FRIENDS: "/app/friends",
+    PROFILE: "/app/profile",
     SETTINGS: "/app/settings",
   },
   NOT_FOUND: "*",
