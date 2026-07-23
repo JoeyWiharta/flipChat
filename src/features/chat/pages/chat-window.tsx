@@ -1,0 +1,12 @@
+import { useParams } from "react-router";
+
+const ChatWindow = () => {
+  const { conversationId } = useParams();
+
+  return (
+    <div className="flex h-full items-center justify-center">
+      <p className="text-muted-foreground">Chat window: {conversationId}</p>
+    </div>
+  );
+};
+export default ChatWindow;
