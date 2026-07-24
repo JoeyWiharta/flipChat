@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import type { Theme, ThemeState } from "@/types/theme.types"
-import { STORAGE_KEYS } from "@/constants/storage-keys"
+import { STORAGE_KEYS } from "@/constants/storageKeys"
 
 const getSystemTheme = (): "light" | "dark" => {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"

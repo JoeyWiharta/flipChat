@@ -15,11 +15,7 @@ const ConversationList = () => {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <Card className="flex h-full flex-col overflow-y-auto">
-        <CardHeader>
-          <CardTitle>Chats</CardTitle>
-        </CardHeader>
-      </Card>
+
 
       <div className="border-b p-4">
         <h2 className="text-lg font-semibold">Chats</h2>

@@ -1,9 +1,9 @@
 import { Link } from "react-router"
 import { Button } from "@/components/ui/button"
-import ThemeToggle from "@/components/shared/theme-toggle"
+import ThemeToggle from "@/components/common/ThemeToggle"
 import { PATHS } from "@/constants/routes"
 import { useActiveSection } from "@/hooks/use-active-section"
-import logoIcon from "@/assets/icons/logo-icon.svg"
+import LogoIcon from "@/assets/icons/LogoIcon.svg"
 
 const menuList = [
     { label: "Home", href: "#home", id: "home" },
@@ -20,7 +20,7 @@ const Navbar = () => {
         <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-50">
             <div className="grid grid-cols-3 items-center px-10 py-4">
                 <Link to={PATHS.HOME} className="flex items-center gap-2 justify-self-start">
-                    <img src={logoIcon} alt="FlipChat" className="w-8 h-8" />
+                    <img src={LogoIcon} alt="FlipChat" className="w-8 h-8" />
                     <span className="text-xl font-bold">FlipChat</span>
                 </Link>
 

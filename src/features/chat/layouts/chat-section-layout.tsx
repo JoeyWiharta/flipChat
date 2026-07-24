@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import ConversationList from "../components/conversation-list";
-import SplitInsetLayout from "@/components/shared/split-inset-layout";
+import SplitInsetLayout from "@/components/common/SplitInsetLayout";
 
 const ChatSectionLayout = () => {
   return (

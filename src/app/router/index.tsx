@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import { PATHS } from "@/constants/routes";
-import ProtectedRoute from "./protected-route";
-import PublicRoute from "./public-route";
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 import LandingLayout from "@/layouts/landing/landing-layout";
-import AuthLayout from "@/layouts/auth/auth-layout";
+import AuthLayout from "@/layouts/auth/AuthLayout";
 import MainLayout from "@/layouts/main/main-layout";
-import PageLoader from "@/components/shared/page-loader";
+import PageLoader from "@/components/common/PageSpinner";
 import { NotFoundPage } from "@/features/not-found/pages/not-found-page";
 
 const LandingPage = lazy(() => import("@/features/landing/pages/landing-page"));
